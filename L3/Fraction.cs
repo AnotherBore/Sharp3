@@ -39,6 +39,18 @@ namespace L3
             newFraction.Reduction();
             return newFraction;
         }
+        public static Fraction operator -(Fraction first, Fraction second)
+        {
+            int a = NOK(first.Denominator, second.Denominator);
+            int m1 = first.Denominator / a;
+            int m2 = second.Denominator / a;
+            first.nominator *= m1;
+            second.nominator *= m2;
+            int newNominator = first.nominator - second.nominator;
+            var newFraction = new Fraction(newNominator, a);
+            newFraction.Reduction();
+            return newFraction;
+        }
 
         public static Fraction operator *(Fraction first, Fraction second)
         {
