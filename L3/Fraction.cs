@@ -8,7 +8,7 @@ namespace L3
 {
     public class Fraction
     {      
-        private int nominator, denominator;
+        private int nominator, denominator, integer;
 
         public int Denominator 
         { 
@@ -21,9 +21,17 @@ namespace L3
             }
         }
 
+        public int Nominator { get => nominator;}
+        public int Integer { get => integer;}
+
         public Fraction(int nominator, int denominator)
         {
             this.nominator = nominator;
+            Denominator = denominator;
+        }
+        public Fraction(int integer, int nominator, int denominator)
+        {
+            this.nominator = integer * denominator + nominator;
             Denominator = denominator;
         }
 
@@ -89,6 +97,13 @@ namespace L3
             int nod = NOD(nominator, Denominator);
             nominator = nominator / nod;
             Denominator = Denominator / nod;
+            if (nominator < 0 && Denominator < 0)
+            {
+                nominator = Math.Abs(nominator);
+                Denominator = Math.Abs(Denominator);
+            }
+            integer = nominator / denominator;
+            nominator = nominator % denominator;
         }
 
         public static int Comparison(Fraction first, Fraction second)
