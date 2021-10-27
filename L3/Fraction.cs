@@ -91,6 +91,20 @@ namespace L3
             Denominator = Denominator / nod;
         }
 
+        public static int Comparison(Fraction first, Fraction second)
+        {
+            int mode=10;
+            int a = NOK(first.Denominator, second.Denominator);
+            int m1 = first.Denominator / a;
+            int m2 = second.Denominator / a;
+            first.nominator *= m1;
+            second.nominator *= m2;
+            if (first.nominator > second.nominator) mode = 1;
+            else if (first.nominator == second.nominator) mode = 0;
+            else mode = 2;
+            return mode;
+        }
+
         public string Write()
         {
             return String.Format("{0} {1}", nominator, Denominator);

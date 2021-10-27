@@ -59,5 +59,13 @@ namespace L3.Tests
             var fraction3 = fraction1 - fraction2;
             Assert.AreEqual("1 10", fraction3.Write());
         }
+        [TestMethod()]
+        public void ComparisonTest()
+        {
+            var fraction1 = new Fraction(2, 10);
+            var fraction2 = new Fraction(1, 10);
+            int a = Fraction.Comparison(fraction1, fraction2);
+            Assert.AreEqual(1, a);
+        }
     }
 }
