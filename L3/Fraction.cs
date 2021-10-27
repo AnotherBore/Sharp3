@@ -10,21 +10,49 @@ namespace L3
     {      
         private int nominator, denominator;
 
+        public int Denominator 
+        { 
+            get => denominator; 
+            set
+            {
+                if(value != 0)
+                denominator = value;
+                else throw new ArgumentException("Division by zero");
+            }
+        }
+
         public Fraction(int nominator, int denominator)
         {
             this.nominator = nominator;
-            this.denominator = denominator;
+            Denominator = denominator;
         }
 
         public static Fraction operator +(Fraction first, Fraction second)
         {
-            int a = NOK(first.denominator, second.denominator);
-            int m1 = first.denominator / a;
-            int m2 = second.denominator / a;
+            int a = NOK(first.Denominator, second.Denominator);
+            int m1 = first.Denominator / a;
+            int m2 = second.Denominator / a;
             first.nominator *= m1;
             second.nominator *= m2;
             int newNominator = first.nominator + second.nominator;
             var newFraction = new Fraction(newNominator, a);
+            newFraction.Reduction();
+            return newFraction;
+        }
+
+        public static Fraction operator *(Fraction first, Fraction second)
+        {
+            int newNominator = first.nominator * second.nominator;
+            int newDeominator = first.Denominator * second.Denominator;
+            var newFraction = new Fraction(newNominator, newDeominator);
+            newFraction.Reduction();
+            return newFraction;
+        }
+        public static Fraction operator /(Fraction first, Fraction second)
+        {
+            int newNominator = first.nominator * second.Denominator;
+            int newDeominator = first.Denominator * second.nominator;
+            var newFraction = new Fraction(newNominator, newDeominator);
             newFraction.Reduction();
             return newFraction;
         }
@@ -46,14 +74,14 @@ namespace L3
         }
         public void Reduction()
         {
-            int nod = NOD(nominator, denominator);
+            int nod = NOD(nominator, Denominator);
             nominator = nominator / nod;
-            denominator = denominator / nod;
+            Denominator = Denominator / nod;
         }
 
         public string Write()
         {
-            return String.Format("{0} {1}", nominator, denominator);
+            return String.Format("{0} {1}", nominator, Denominator);
         }
     }
 }

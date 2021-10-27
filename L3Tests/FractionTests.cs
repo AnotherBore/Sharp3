@@ -28,11 +28,27 @@ namespace L3.Tests
         }
 
         [TestMethod()]
-        public void PlusTest()
+        public void AddingTest()
         {
             var fraction1 = new Fraction(2, 10);
             var fraction2 = new Fraction(2, 10);
             var fraction3 = fraction1 + fraction2;
+            Assert.AreEqual("2 5", fraction3.Write());
+        }
+        [TestMethod()]
+        public void DivisionTest()
+        {
+            var fraction1 = new Fraction(2, 10);
+            var fraction2 = new Fraction(2, 1);
+            var fraction3 = fraction1 / fraction2;
+            Assert.AreEqual("1 10", fraction3.Write());
+        }
+        [TestMethod()]
+        public void MultiplyTest()
+        {
+            var fraction1 = new Fraction(2, 10);
+            var fraction2 = new Fraction(2, 1);
+            var fraction3 = fraction1 * fraction2;
             Assert.AreEqual("2 5", fraction3.Write());
         }
     }
