@@ -16,7 +16,7 @@ namespace L3
             set
             {
                 if(value != 0)
-                denominator = value;
+                denominator = value;               
             }
         }
 
@@ -30,7 +30,14 @@ namespace L3
         }
         public Fraction(int integer, int nominator, int denominator)
         {
-            this.nominator = integer * denominator + nominator;
+            if(nominator < 0)
+            {
+                this.nominator = -1 * (integer * denominator + Math.Abs(nominator));
+            }
+            else
+            {
+                this.nominator = integer * denominator + nominator;
+            }
             Denominator = denominator;
             this.integer = 0;
         }
@@ -78,13 +85,16 @@ namespace L3
         }
         private static int NOK(int a, int b)
         {
+            a = Math.Abs(a);
+            b = Math.Abs(b);
             int c;
             c = a / NOD(a,b) * b;
             return c;
         }
         private static int NOD(int a, int b)
         {
-
+            a = Math.Abs(a);
+            b = Math.Abs(b);
             while (a != 0 && b != 0)
             {
                 if (a > b) a = a % b;
@@ -97,11 +107,6 @@ namespace L3
             int nod = NOD(nominator, Denominator);
             nominator = nominator / nod;
             Denominator = Denominator / nod;
-            if (nominator < 0 && Denominator < 0)
-            {
-                nominator = Math.Abs(nominator);
-                Denominator = Math.Abs(Denominator);
-            }
             integer = nominator / denominator;
             nominator = nominator % denominator;
         }
