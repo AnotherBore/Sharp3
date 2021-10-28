@@ -15,6 +15,8 @@ namespace L3
         public Form()
         {
             InitializeComponent();
+            txt4.Text = "0";
+            txt1.Text = "0";
         }
 
         private Fraction Calculate()
@@ -28,9 +30,11 @@ namespace L3
                 var value4 = int.Parse(txt4.Text);
                 var value5 = int.Parse(txt5.Text);
                 var value6 = int.Parse(txt6.Text);
-                var fraction1 = new Fraction(value1, value2, value3);
-                var fraction2 = new Fraction(value4, value5, value6);
-                
+                Fraction fraction1;
+                Fraction fraction2;
+                fraction1 = new Fraction(value1, value2, value3);
+                fraction2 = new Fraction(value4, value5, value6);
+
                 switch (cmbOp.Text)
                 {
                     case "+":
@@ -55,52 +59,51 @@ namespace L3
             return answer;
         }
 
-        private void txt1_TextChanged(object sender, EventArgs e)
+        private void NewArguments()
         {
-            Fraction fraction = Calculate();
-            answ1.Text = Convert.ToString(fraction.Integer);
-            answ2.Text = Convert.ToString(fraction.Nominator);
-            answ3.Text = Convert.ToString(fraction.Denominator);
+            try
+            {
+                var value1 = int.Parse(txt1.Text);
+                var value2 = int.Parse(txt2.Text);
+                var value3 = int.Parse(txt3.Text);
+                var value4 = int.Parse(txt4.Text);
+                var value5 = int.Parse(txt5.Text);
+                var value6 = int.Parse(txt6.Text);
+                Fraction fraction1;
+                Fraction fraction2;
+                fraction1 = new Fraction(value1, value2, value3);
+                fraction2 = new Fraction(value4, value5, value6);
+
+                fraction1.Reduction();
+                fraction2.Reduction();
+                WriteNewArguments(fraction1, fraction2);
+            }
+            catch (FormatException)
+            {
+
+            }
         }
 
-        private void txt4_TextChanged(object sender, EventArgs e)
+        private void WriteNewArguments(Fraction first, Fraction second)
         {
-            Fraction fraction = Calculate();
-            answ1.Text = Convert.ToString(fraction.Integer);
-            answ2.Text = Convert.ToString(fraction.Nominator);
-            answ3.Text = Convert.ToString(fraction.Denominator);
+            txt4.Text = Convert.ToString(first.Integer);
+            txt5.Text = Convert.ToString(first.Nominator);
+            txt3.Text = Convert.ToString(first.Denominator);
+            txt1.Text = Convert.ToString(second.Integer);
+            txt2.Text = Convert.ToString(second.Nominator);
+            txt6.Text = Convert.ToString(second.Denominator);
         }
 
-        private void txt2_TextChanged(object sender, EventArgs e)
+        private void mainButton_Click(object sender, EventArgs e)
         {
+            NewArguments();
             Fraction fraction = Calculate();
             answ1.Text = Convert.ToString(fraction.Integer);
-            answ2.Text = Convert.ToString(fraction.Nominator);
-            answ3.Text = Convert.ToString(fraction.Denominator);
-        }
-
-        private void txt3_TextChanged(object sender, EventArgs e)
-        {
-            Fraction fraction = Calculate();
-            answ1.Text = Convert.ToString(fraction.Integer);
-            answ2.Text = Convert.ToString(fraction.Nominator);
-            answ3.Text = Convert.ToString(fraction.Denominator);
-        }
-
-        private void txt5_TextChanged(object sender, EventArgs e)
-        {
-            Fraction fraction = Calculate();
-            answ1.Text = Convert.ToString(fraction.Integer);
-            answ2.Text = Convert.ToString(fraction.Nominator);
-            answ3.Text = Convert.ToString(fraction.Denominator);
-        }
-
-        private void txt6_TextChanged(object sender, EventArgs e)
-        {
-            Fraction fraction = Calculate();
-            answ1.Text = Convert.ToString(fraction.Integer);
-            answ2.Text = Convert.ToString(fraction.Nominator);
-            answ3.Text = Convert.ToString(fraction.Denominator);
+            if (fraction.Nominator > 0)
+            {
+                answ2.Text = Convert.ToString(fraction.Nominator);
+                answ3.Text = Convert.ToString(fraction.Denominator);
+            }
         }
     }
 }

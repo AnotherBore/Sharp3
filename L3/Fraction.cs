@@ -17,7 +17,6 @@ namespace L3
             {
                 if(value != 0)
                 denominator = value;
-                else throw new ArgumentException("Division by zero");
             }
         }
 
@@ -33,13 +32,14 @@ namespace L3
         {
             this.nominator = integer * denominator + nominator;
             Denominator = denominator;
+            this.integer = 0;
         }
 
         public static Fraction operator +(Fraction first, Fraction second)
         {
             int a = NOK(first.Denominator, second.Denominator);
-            int m1 = first.Denominator / a;
-            int m2 = second.Denominator / a;
+            int m1 = a / first.Denominator;
+            int m2 = a / second.Denominator;
             first.nominator *= m1;
             second.nominator *= m2;
             int newNominator = first.nominator + second.nominator;
@@ -50,8 +50,8 @@ namespace L3
         public static Fraction operator -(Fraction first, Fraction second)
         {
             int a = NOK(first.Denominator, second.Denominator);
-            int m1 = first.Denominator / a;
-            int m2 = second.Denominator / a;
+            int m1 = a / first.Denominator;
+            int m2 = a / second.Denominator;
             first.nominator *= m1;
             second.nominator *= m2;
             int newNominator = first.nominator - second.nominator;
@@ -122,7 +122,7 @@ namespace L3
 
         public string Write()
         {
-            return String.Format("{0} {1}", nominator, Denominator);
+            return String.Format("{0} {1} {2}",integer, nominator, Denominator);
         }
     }
 }
