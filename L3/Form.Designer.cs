@@ -47,6 +47,9 @@ namespace L3
             this.num6 = new System.Windows.Forms.NumericUpDown();
             this.ch1 = new System.Windows.Forms.CheckBox();
             this.ch2 = new System.Windows.Forms.CheckBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.lab = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.num1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.num2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.num3)).BeginInit();
@@ -63,37 +66,43 @@ namespace L3
             "+",
             "-",
             "/",
-            "*",
-            ">"});
-            this.cmbOp.Location = new System.Drawing.Point(230, 54);
+            "*"});
+            this.cmbOp.Location = new System.Drawing.Point(228, 39);
             this.cmbOp.Name = "cmbOp";
             this.cmbOp.Size = new System.Drawing.Size(39, 28);
-            this.cmbOp.TabIndex = 6;
+            this.cmbOp.TabIndex = 7;
             this.cmbOp.Text = "+";
+            this.cmbOp.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Just_Key_Up);
             // 
             // answ3
             // 
-            this.answ3.Location = new System.Drawing.Point(404, 74);
+            this.answ3.Location = new System.Drawing.Point(389, 74);
             this.answ3.Name = "answ3";
             this.answ3.ReadOnly = true;
             this.answ3.Size = new System.Drawing.Size(64, 28);
             this.answ3.TabIndex = 8;
+            this.answ3.TabStop = false;
+            this.answ3.Visible = false;
             // 
             // answ2
             // 
-            this.answ2.Location = new System.Drawing.Point(404, 39);
+            this.answ2.Location = new System.Drawing.Point(389, 39);
             this.answ2.Name = "answ2";
             this.answ2.ReadOnly = true;
             this.answ2.Size = new System.Drawing.Size(64, 28);
             this.answ2.TabIndex = 9;
+            this.answ2.TabStop = false;
+            this.answ2.Visible = false;
             // 
             // answ1
             // 
-            this.answ1.Location = new System.Drawing.Point(334, 55);
+            this.answ1.Location = new System.Drawing.Point(319, 55);
             this.answ1.Name = "answ1";
             this.answ1.ReadOnly = true;
             this.answ1.Size = new System.Drawing.Size(64, 28);
             this.answ1.TabIndex = 10;
+            this.answ1.TabStop = false;
+            this.answ1.Visible = false;
             // 
             // lblOperation
             // 
@@ -107,7 +116,7 @@ namespace L3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.93583F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(213, 24);
+            this.label3.Location = new System.Drawing.Point(213, 9);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(84, 20);
             this.label3.TabIndex = 12;
@@ -117,7 +126,7 @@ namespace L3
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.93583F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(58, 19);
+            this.label2.Location = new System.Drawing.Point(58, 9);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(117, 20);
             this.label2.TabIndex = 13;
@@ -137,7 +146,7 @@ namespace L3
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.93583F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(409, 9);
+            this.label1.Location = new System.Drawing.Point(371, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(57, 20);
             this.label1.TabIndex = 15;
@@ -146,13 +155,14 @@ namespace L3
             // mainButton
             // 
             this.mainButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.mainButton.Location = new System.Drawing.Point(325, 154);
+            this.mainButton.Location = new System.Drawing.Point(217, 108);
             this.mainButton.Name = "mainButton";
-            this.mainButton.Size = new System.Drawing.Size(143, 52);
-            this.mainButton.TabIndex = 16;
+            this.mainButton.Size = new System.Drawing.Size(119, 57);
+            this.mainButton.TabIndex = 8;
             this.mainButton.Text = "Сократить и вычислить";
             this.mainButton.UseVisualStyleBackColor = true;
             this.mainButton.Click += new System.EventHandler(this.mainButton_Click);
+            this.mainButton.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Just_Key_Up);
             // 
             // num1
             // 
@@ -165,7 +175,8 @@ namespace L3
             0});
             this.num1.Name = "num1";
             this.num1.Size = new System.Drawing.Size(58, 26);
-            this.num1.TabIndex = 17;
+            this.num1.TabIndex = 1;
+            this.num1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Just_Key_Up);
             // 
             // num2
             // 
@@ -178,7 +189,8 @@ namespace L3
             0});
             this.num2.Name = "num2";
             this.num2.Size = new System.Drawing.Size(58, 26);
-            this.num2.TabIndex = 18;
+            this.num2.TabIndex = 2;
+            this.num2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Just_Key_Up);
             // 
             // num3
             // 
@@ -196,12 +208,13 @@ namespace L3
             0});
             this.num3.Name = "num3";
             this.num3.Size = new System.Drawing.Size(58, 26);
-            this.num3.TabIndex = 19;
+            this.num3.TabIndex = 3;
             this.num3.Value = new decimal(new int[] {
             1,
             0,
             0,
             0});
+            this.num3.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Just_Key_Up);
             // 
             // num4
             // 
@@ -214,7 +227,8 @@ namespace L3
             0});
             this.num4.Name = "num4";
             this.num4.Size = new System.Drawing.Size(58, 26);
-            this.num4.TabIndex = 20;
+            this.num4.TabIndex = 4;
+            this.num4.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Just_Key_Up);
             // 
             // num5
             // 
@@ -227,7 +241,8 @@ namespace L3
             0});
             this.num5.Name = "num5";
             this.num5.Size = new System.Drawing.Size(58, 26);
-            this.num5.TabIndex = 21;
+            this.num5.TabIndex = 5;
+            this.num5.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Just_Key_Up);
             // 
             // num6
             // 
@@ -245,12 +260,13 @@ namespace L3
             0});
             this.num6.Name = "num6";
             this.num6.Size = new System.Drawing.Size(58, 26);
-            this.num6.TabIndex = 22;
+            this.num6.TabIndex = 6;
             this.num6.Value = new decimal(new int[] {
             1,
             0,
             0,
             0});
+            this.num6.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Just_Key_Up);
             // 
             // ch1
             // 
@@ -260,6 +276,7 @@ namespace L3
             this.ch1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ch1.Size = new System.Drawing.Size(35, 28);
             this.ch1.TabIndex = 23;
+            this.ch1.TabStop = false;
             this.ch1.Text = "-";
             this.ch1.UseVisualStyleBackColor = true;
             // 
@@ -272,14 +289,52 @@ namespace L3
             this.ch2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ch2.Size = new System.Drawing.Size(35, 28);
             this.ch2.TabIndex = 24;
+            this.ch2.TabStop = false;
             this.ch2.Text = "-";
             this.ch2.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button1.Location = new System.Drawing.Point(349, 108);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(119, 57);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "Сравнить";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Just_Key_Up);
+            // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button2.Location = new System.Drawing.Point(217, 171);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(249, 43);
+            this.button2.TabIndex = 10;
+            this.button2.Text = "Очистить поля";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Just_Key_Up);
+            // 
+            // lab
+            // 
+            this.lab.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lab.Location = new System.Drawing.Point(317, 39);
+            this.lab.Name = "lab";
+            this.lab.Size = new System.Drawing.Size(151, 63);
+            this.lab.TabIndex = 27;
+            this.lab.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lab.Visible = false;
             // 
             // Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(478, 223);
+            this.Controls.Add(this.lab);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.ch2);
             this.Controls.Add(this.ch1);
             this.Controls.Add(this.num6);
@@ -304,6 +359,7 @@ namespace L3
             this.MaximizeBox = false;
             this.Name = "Form";
             this.Text = "Калькулятор дробей";
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Just_Key_Up);
             ((System.ComponentModel.ISupportInitialize)(this.num1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.num2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.num3)).EndInit();
@@ -334,6 +390,9 @@ namespace L3
         private System.Windows.Forms.CheckBox ch1;
         private System.Windows.Forms.CheckBox ch2;
         private System.Windows.Forms.ComboBox cmbOp;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label lab;
     }
 }
 
