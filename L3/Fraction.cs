@@ -30,9 +30,9 @@ namespace L3
         }
         public Fraction(int integer, int nominator, int denominator)
         {
-            if(nominator < 0)
+            if(integer < 0)
             {
-                this.nominator = -1 * (integer * denominator + Math.Abs(nominator));
+                this.nominator = -1 * (Math.Abs(integer) * denominator + nominator);
             }
             else
             {
@@ -77,9 +77,26 @@ namespace L3
         }
         public static Fraction operator /(Fraction first, Fraction second)
         {
-            int newNominator = first.nominator * second.Denominator;
-            int newDeominator = first.Denominator * second.nominator;
-            var newFraction = new Fraction(newNominator, newDeominator);
+            int newNominator;
+            int newDenominator;
+            if (first.Nominator < 0 || second.Nominator < 0)
+            {
+                newDenominator = first.Denominator * Math.Abs(second.nominator);
+                if (second.Nominator < 0 && first.Nominator < 0)
+                {
+                    newNominator = -1 * first.nominator * second.Denominator;
+                }
+                else
+                {
+                    newNominator = -1 * Math.Abs(first.nominator * second.Denominator);
+                }               
+            }
+            else
+            {
+                newNominator = first.nominator * second.Denominator;
+                newDenominator = first.Denominator * second.nominator;
+            }
+            var newFraction = new Fraction(newNominator, newDenominator);
             newFraction.Reduction();
             return newFraction;
         }
@@ -115,12 +132,12 @@ namespace L3
         {
             int mode=10;
             int a = NOK(first.Denominator, second.Denominator);
-            int m1 = first.Denominator / a;
-            int m2 = second.Denominator / a;
+            int m1 = a /first.Denominator;
+            int m2 = a /second.Denominator;
             first.nominator *= m1;
             second.nominator *= m2;
-            if (first.nominator > second.nominator) mode = 1;
-            else if (first.nominator == second.nominator) mode = 0;
+            if (first.Nominator > second.Nominator) mode = 1;
+            else if (first.Nominator == second.Nominator) mode = 0;
             else mode = 2;
             return mode;
         }
