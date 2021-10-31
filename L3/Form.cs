@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace L3
@@ -31,18 +24,18 @@ namespace L3
                 int value6 = Decimal.ToInt32(num6.Value);
                 if (ch1.Checked && ch2.Checked)
                 {
-                    fraction1 = new Fraction(value1, value2 * (-1), value3);
-                    fraction2 = new Fraction(value4, value5 * (-1), value6);
+                    fraction1 = new Fraction(value1 * (-1), value2, value3);
+                    fraction2 = new Fraction(value4 * (-1), value5, value6);
                 }
                 else if (ch1.Checked)
                 {
-                    fraction1 = new Fraction(value1, value2 * (-1), value3);
+                    fraction1 = new Fraction(value1 * (-1), value2,  value3);
                     fraction2 = new Fraction(value4, value5, value6);
                 }
                 else if (ch2.Checked)
                 {
                     fraction1 = new Fraction(value1, value2, value3);
-                    fraction2 = new Fraction(value4, value5 * (-1), value6);
+                    fraction2 = new Fraction(value4 * (-1), value5, value6);
                 }
 
                 else
